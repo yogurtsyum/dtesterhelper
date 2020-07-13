@@ -5,7 +5,7 @@ module.exports = class DesktopCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'help',
-            aliases: ['h', 'info', 'i'],
+            aliases: ['h', 'info'],
             group: 'info',
             memberName: 'help',
             description: 'Displays some bot information.',
