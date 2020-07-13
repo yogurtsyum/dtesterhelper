@@ -16,8 +16,11 @@ module.exports = class DesktopCommand extends Command {
                     type: 'string',
                     default: '',
                     validate: async command => {
-                        let cmd = client.registry.commands.get(command);
-                        if(!cmd) return false;
+                        let cmd = await client.registry.commands.get(command);
+                        if(!cmd){
+                            let cmd = await client.registry.commands.find(c => c.aliases.includes(command));
+                            if(!cmd) return false;
+                        }
                         if(cmd) return true;
                     }
                 }
@@ -27,12 +30,16 @@ module.exports = class DesktopCommand extends Command {
 
     async run(message, { command }){
         if(command !== ''){
-            let cmd = message.client.registry.commands.get(command);
+            let cmd = await message.client.registry.commands.get(command);
+            if(!cmd){
+                cmd = await client.registry.commands.find(c => c.aliases.includes(command));
+            }
             if(cmd){
                 let embed = new Discord.MessageEmbed();
                 embed.setTitle(`📖 \`${cmd.name} ${cmd.format}\``);
                 embed.setDescription(`${cmd.description}`);
                 embed.addField('Module', `${cmd.group.name}`);
+                if(embed.aliases.length !== 0) embed.addField('Aliases', `${cmd.aliases.join(', ')}`);
                 embed.setFooter(`Developed by Lengo#0001`);
                 embed.setColor(message.client.colors.blurple);
                 return message.embed(embed);
