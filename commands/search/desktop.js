@@ -107,6 +107,6 @@ module.exports = class DesktopCommand extends Command {
             awaitreact();
           }).catch(console.error);
         }
-        awaitreact();
+        return awaitreact();
     }
 }
