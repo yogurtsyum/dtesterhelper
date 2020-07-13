@@ -36,7 +36,7 @@ module.exports = class DesktopCommand extends Command {
             embed.setDescription('Oops! No bugs found.');
             embed.setColor(message.client.colors.red);
             embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
-            message.react('727997516225708033');
+            await message.react('727997516225708033');
             return message.embed(embed);
         }
         await message.react('727997516179570781');
