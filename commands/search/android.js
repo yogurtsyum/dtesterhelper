@@ -26,7 +26,7 @@ module.exports = class AndroidCommand extends Command {
         cards = await cards.json();
         let filteredCards = [];
         cards.forEach(async c => {
-            if(c.name.startsWith(query) || c.name.includes(query) || c.name === query){
+            if(c.name.toLowerCase().startsWith(query.toLowerCase()) || c.name.toLowerCase().includes(query.toLowerCase()) || c.name.toLowerCase() === query.toLowerCase()){
                 filteredCards.push(c);
             }
         });
@@ -107,6 +107,6 @@ module.exports = class AndroidCommand extends Command {
             awaitreact();
           }).catch(console.error);
         }
-        awaitreact();
+        return awaitreact();
     }
 }
