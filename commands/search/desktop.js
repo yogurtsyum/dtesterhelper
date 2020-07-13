@@ -5,7 +5,7 @@ module.exports = class DesktopCommand extends Command {
     constructor(client) {
         super(client, {
             name: 'desktop',
-            aliases: ['d'],
+            aliases: ['d', 'mac', 'pc', 'm', 'p'],
             group: 'search',
             memberName: 'desktop',
             description: 'Searches the desktop bug reports board.',
