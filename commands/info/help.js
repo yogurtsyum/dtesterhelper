@@ -39,7 +39,7 @@ module.exports = class DesktopCommand extends Command {
                 embed.setTitle(`📖 \`${cmd.name} ${cmd.format}\``);
                 embed.setDescription(`${cmd.description}`);
                 embed.addField('Module', `${cmd.group.name}`);
-                if(embed.aliases.length !== 0) embed.addField('Aliases', `${cmd.aliases.join(', ')}`);
+                if(cmd.aliases.length !== 0) embed.addField('Aliases', `${cmd.aliases.join(', ')}`);
                 embed.setFooter(`Developed by Lengo#0001`);
                 embed.setColor(message.client.colors.blurple);
                 return message.embed(embed);
