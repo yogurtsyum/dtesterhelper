@@ -31,18 +31,21 @@ module.exports = class DesktopCommand extends Command {
             }
         });
         await reaction.remove();
-        await message.react('727997516179570781');
         if(filteredCards.length === 0){
             let embed = new Discord.MessageEmbed();
             embed.setDescription('Oops! No bugs found.');
             embed.setColor(message.client.colors.red);
             embed.setAuthor(message.author.tag, message.author.displayAvatarURL());;
-            return message.embed(embed);
+            message.embed(embed);
+            return message.react('727997516225708033');
         }
+        await message.react('727997516179570781');
         if(filteredCards.length <= 5){
             let embed = new Discord.MessageEmbed();
-            let bugs = filteredCards.map(c => `\n[${c.name}](${c.url})`).join('');
-            embed.setDescription(`Found \`${filteredCards.length}\` bugs.\n${bugs}`);
+            embed.setDescription(`Found \`${filteredCards.length}\` bugs.`);
+            filteredCards.forEach(async b => {
+                embed.addField(b.name, `[Click to view](${b.url})`);
+            });
             embed.setColor(message.client.colors.blurple);
             embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
             return message.embed(embed);
