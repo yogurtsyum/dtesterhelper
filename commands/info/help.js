@@ -18,7 +18,7 @@ module.exports = class DesktopCommand extends Command {
                     validate: async command => {
                         let cmd = await client.registry.commands.get(command);
                         if(!cmd){
-                            let cmd = await client.registry.commands.find(c => c.aliases.includes(command));
+                            cmd = await client.registry.commands.find(c => c.aliases.includes(command));
                             if(!cmd) return false;
                         }
                         if(cmd) return true;
@@ -32,14 +32,14 @@ module.exports = class DesktopCommand extends Command {
         if(command !== ''){
             let cmd = await message.client.registry.commands.get(command);
             if(!cmd){
-                cmd = await client.registry.commands.find(c => c.aliases.includes(command));
+                cmd = await message.client.registry.commands.find(c => c.aliases.includes(command));
             }
             if(cmd){
                 let embed = new Discord.MessageEmbed();
                 embed.setTitle(`📖 \`${cmd.name} ${cmd.format}\``);
                 embed.setDescription(`${cmd.description}`);
-                embed.addField('Module', `${cmd.group.name}`);
-                if(cmd.aliases.length !== 0) embed.addField('Aliases', `${cmd.aliases.join(', ')}`);
+                embed.addField('Module', `${cmd.group.name}`, true);
+                if(cmd.aliases.length !== 0) embed.addField('Aliases', `${cmd.aliases.map(c => `\`${c}\``).join(', ')}`, true);
                 embed.setFooter(`Developed by Lengo#0001`);
                 embed.setColor(message.client.colors.blurple);
                 return message.embed(embed);
