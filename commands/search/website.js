@@ -75,12 +75,10 @@ module.exports = class WebsiteCommand extends Command {
           await msg.awaitReactions(filter, { time: 60000, max: 1 }).then(async (collected) => {
             if(collected.size == 0){
               msg.reactions.removeAll();
-              embed.setFooter('Developed by Lengo#0001');
               return msg.edit(embed);
             }
             if(collected.first().emoji.name === '❌'){
                 msg.reactions.removeAll();
-                embed.setFooter('Developed by Lengo#0001');
                 return msg.edit(embed);
             }
             if(collected.first().emoji.name === '◀️'){
@@ -109,6 +107,6 @@ module.exports = class WebsiteCommand extends Command {
             awaitreact();
           }).catch(console.error);
         }
-        awaitreact();
+        return awaitreact();
     }
 }
