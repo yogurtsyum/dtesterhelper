@@ -3,8 +3,7 @@ const { CommandoClient } = require('discord.js-commando');
 const path = require('path');
 const client = new CommandoClient({
     commandPrefix: '?',
-    owner: '235929735643922433',
-    commandEditableDuration: 0
+    owner: '235929735643922433'
 });
 client.registry.registerDefaultTypes();
 client.registry.registerGroups([
