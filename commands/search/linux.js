@@ -44,7 +44,7 @@ module.exports = class LinuxCommand extends Command {
             let embed = new Discord.MessageEmbed();
             embed.setDescription(`Found \`${filteredCards.length}\` bugs.`);
             filteredCards.forEach(async b => {
-                embed.addField(b.name, `[Click to view](${b.url})`);
+                embed.addField(b.name, `[Click to view](${b.shortUrl})`);
             });
             embed.setColor(message.client.colors.blurple);
             embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
@@ -61,7 +61,7 @@ module.exports = class LinuxCommand extends Command {
         // let bugs = pagedArray[0].map(c => `\n[${c.name}](${c.url})`).join('');
         embed.setDescription(`Found \`${filteredCards.length}\` bugs.`);
         pagedArray[0].forEach(async b => {
-            embed.addField(b.name, `[Click to view](${b.url})`);
+            embed.addField(b.name, `[Click to view](${b.shortUrl})`);
         });
         embed.setColor(message.client.colors.blurple);
         embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
@@ -98,7 +98,7 @@ module.exports = class LinuxCommand extends Command {
             embed.setDescription(`Found \`${filteredCards.length}\` bugs.`);
             embed.fields = [];
             pagedArray[currentpage - 1].forEach(async b => {
-                embed.addField(b.name, `[Click to view](${b.url})`);
+                embed.addField(b.name, `[Click to view](${b.shortUrl})`);
             });
             embed.setColor(message.client.colors.blurple);
             embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
